@@ -1,0 +1,45 @@
+<!-- Step 3: Create public/receiver.html to receive and play the audio -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audio Receiver</title>
+</head>
+<body>
+  <h1>Audio Receiver</h1>
+  <audio id="audio" controls></audio>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    const audioBufferQueue = [];
+
+    socket.on('audio', (data) => {
+      if (data) {
+        const arrayBuffer = new Float32Array(data);
+        const audioBuffer = audioContext.createBuffer(1, arrayBuffer.length, audioContext.sampleRate);
+        audioBuffer.copyToChannel(arrayBuffer, 0);
+        audioBufferQueue.push(audioBuffer);
+      } else {
+        audioBufferQueue.length = 0;
+      }
+    });
+
+    const playAudio = () => {
+      if (audioBufferQueue.length > 0) {
+        const bufferSource = audioContext.createBufferSource();
+        bufferSource.buffer = audioBufferQueue.shift();
+        bufferSource.connect(audioContext.destination);
+        bufferSource.start();
+        bufferSource.onended = playAudio;
+      } else {
+        setTimeout(playAudio, 100);
+      }
+    };
+
+    playAudio();
+  </script>
+</body>
+</html>

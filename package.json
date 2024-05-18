@@ -1,0 +1,23 @@
+{
+  "name": "audio_caster",
+  "version": "1.0.0",
+  "description": " node.js app that uses chrome's screen share to send audio from a pc to a second page that someone can pull up on their phone. ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kevin-huff/audio_caster.git"
+  },
+  "author": "",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/kevin-huff/audio_caster/issues"
+  },
+  "homepage": "https://github.com/kevin-huff/audio_caster#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  }
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Screen Share Audio</title>
+</head>
+<body>
+  <h1>Screen Share Audio</h1>
+  <button id="start">Start Sharing</button>
+  <button id="stop">Stop Sharing</button>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    let mediaStream;
+
+    document.getElementById('start').addEventListener('click', async () => {
+      try {
+        mediaStream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
+        const audioTracks = mediaStream.getAudioTracks();
+
+        if (audioTracks.length > 0) {
+          const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+          const source = audioContext.createMediaStreamSource(new MediaStream(audioTracks));
+          const processor = audioContext.createScriptProcessor(4096, 1, 1);
+
+          source.connect(processor);
+          processor.connect(audioContext.destination);
+
+          processor.onaudioprocess = (event) => {
+            const audioData = event.inputBuffer.getChannelData(0);
+            socket.emit('audio', audioData);
+          };
+        }
+      } catch (err) {
+        console.error('Error accessing display media.', err);
+      }
+    });
+
+    document.getElementById('stop').addEventListener('click', () => {
+      if (mediaStream) {
+        mediaStream.getTracks().forEach(track => track.stop());
+        mediaStream = null;
+        socket.emit('audio', null);
+      }
+    });
+  </script>
+</body>
+</html>
