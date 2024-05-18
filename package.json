@@ -4,6 +4,7 @@
   "description": " node.js app that uses chrome's screen share to send audio from a pc to a second page that someone can pull up on their phone. ",
   "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

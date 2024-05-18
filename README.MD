@@ -5,6 +5,17 @@ Here's a Node.js app that's out of sight.
 Audio from your PC, you'll share,
 To a phone, with wireless flair.
 
+## Overview
+
+Audio Caster is a versatile Node.js application designed to make audio sharing between devices seamless and straightforward. Whether you're looking to stream music from your PC to your phone, share audio from a webinar with remote participants, or broadcast any audio content wirelessly, this app has you covered. Using Chrome's screen sharing feature, Audio Caster captures audio and transmits it in real-time to a connected device via a web interface.
+
+## Potential Uses
+
+- **Remote Listening:** Stream your favorite tracks or audio files from your PC to your phone while you're in another room or on the go.
+- **Webinars and Meetings:** Share audio from webinars or online meetings directly to participants' phones, ensuring everyone hears the content clearly.
+- **Classroom and Presentations:** In educational settings, teachers can broadcast audio content to students' devices for better engagement and accessibility.
+- **Home Entertainment:** Stream audio from your PC to other devices around your home, creating a multi-room audio experience without additional hardware.
+
 ## Features
 
 - Audio capture, clear and neat,
@@ -50,7 +61,7 @@ http://localhost:3000 will take you there.
 Click "Start Sharing" to capture the sound,
 On your phone, receiver.html will be found.
 
-# Accessing the App from Outside Your Home
+### Accessing the App from Outside Your Home
 Want to share the sound beyond your place?
 Here are some tips to help you interface:
 
