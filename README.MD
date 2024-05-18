@@ -58,7 +58,13 @@ node server.js
 ```
 Open your browser, navigate with care,
 http://localhost:3000 will take you there.
-Click "Start Sharing" to capture the sound,
+Click "Start Sharing" to capture the sound.
+
+![alt text](image.png)
+
+Make sure to tick the Also Share system audio to make it stick. 
+Select any screen to it doesn't matter it seems. 
+
 On your phone, receiver.html will be found.
 
 ### Accessing the App from Outside Your Home
